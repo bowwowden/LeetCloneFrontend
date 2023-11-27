@@ -11,10 +11,18 @@
     "@uiw/codemirror-theme-dracula": "^4.21.20",
     "@uiw/react-codemirror": "^4.21.20",
     "codemirror": "^6.0.1",
+    "marked": "^10.0.0",
     "react": "^18.2.0",
+    "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.6",
+    "react-markdown": "^9.0.1",
     "react-router-dom": "^6.20.0",
     "react-scripts": "5.0.1",
+    "react-three-fiber": "^6.0.13",
+    "remark": "^15.0.1",
+    "remark-react": "^9.0.1",
+    "three": "^0.158.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -42,6 +50,8 @@
     ]
   },
   "devDependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
     "tailwindcss": "^3.3.5"
   }
 }

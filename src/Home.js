@@ -42,7 +42,7 @@ function Home() {
     };
   
   
-    const url = 'http://172.21.0.3:80/submit/'; // Replace with the actual URL
+    const url = 'http://172.22.0.3:80/submit/'; // Replace with the actual URL
   
     fetch(url, requestOptions)
       .then(response => {

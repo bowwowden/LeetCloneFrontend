@@ -1,3 +1,4 @@
+import config from "./config"; // Adjust the path based on your project structure
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CodeMirror from '@uiw/react-codemirror';
@@ -8,14 +9,12 @@ import DropdownMenu from "./DropdownMenu";
 const ProblemPage = () => {
   const { id } = useParams();
   const [problem, setProblem] = useState(null);
-  const [code, setCode] = useState("def sort(numbers): \n\treturn None");
+  const [code, setCode] = useState("");
   const [apiResponse, setApiResponse] = useState(null);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Python");
   const [selectedExtension, setSelectedExtension] = useState(langs.python());
-
-
-  // const [selectedValue, setSelectedValue] = useState("Python"); // Initialize with an empty string
+  const url = `${config.apiUrl}`;
 
   // Callback function to update the selected value
   const handleDropdownChange = (value) => {
@@ -24,19 +23,20 @@ const ProblemPage = () => {
   };
  
   // function for mapping it to langs.CommonLisp, rust, python etc
-  // const [selectedExtension, setSelectedExtension] = useState(langs.commonLisp()); // Initialize with null
 
   useEffect(() => {
     const fetchProblem = async () => {
       try {
-        const response = await fetch(`http://172.22.0.3:80/getproblem/${id}`);
+        const response = await fetch(`${url}/getproblem/${id}`);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
         setProblem(data);
-         // Set the default code from the problem details
-        setCode(data && data.defaultcode ? data.defaultcode : "");
+        // Clean up and set the default code from the problem details
+        setCode(data && data.code ? data.code.replace(/\\n/g, '\n').replace(/\\t/g, '\t') : "");
+        console.log("default code ");
+        console.log(data.code);
       } catch (error) {
         console.error('Error fetching problem:', error);
       }
@@ -72,10 +72,7 @@ const ProblemPage = () => {
       body: JSON.stringify(postData),
     };
   
-  
-    const url = 'http://172.22.0.3:80/submit/'; // Replace with the actual URL
-  
-    fetch(url, requestOptions)
+    fetch(`${url}/submit/`, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -131,6 +128,7 @@ const ProblemPage = () => {
               className="code-mirror"
               basicSetup={{
                 highlightActiveLine: false, 
+                format: true, // Enable formatting
               }}
               extensions={selectedExtension} 
               onChange = {onChange}

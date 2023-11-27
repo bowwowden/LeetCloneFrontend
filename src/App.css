@@ -106,13 +106,132 @@ body {
 
 .problem-app {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background-color: #282c34;
-  height: 100vh; /* Adjust the height as needed */
+  min-height: 100vh; /* Use min-height instead of height */
 }
+
 
 .problem-header {
   background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.search-bar {
+  background-color: #222222;
+  color: white;
+}
+
+.problems-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.problems-table th, .problems-table td {
+  border-top: 1px solid #44475a;
+  border-bottom: 1px solid #44475a;
+  padding: 8px;
+  text-align: left;
+}
+
+
+.problems-table th {
+  background-color: #44475a;
+}
+
+.problems-table tbody tr:hover {
+  /* background-color: #6272a4; */
+  color: #4a62ff;
+}
+
+.problems-table td.text-column {
+  background-color: #44475a;
+  color: #f8f8f2;
+}
+
+
+/* images section starts */
+
+.images {
+  margin-top: var(--medium-margin);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: var(--default-spacing);
+  justify-content: center;
+  align-items: center;
+}
+
+.images .image {
+  width: 300px;
+  height: 250px;
+  justify-self: center;
+  align-self: center;
+  border-radius: 10px;
+  transition: transform 0.5s;
+}
+
+.blogs {
+  width: 300px;
+  height: 500px;
+  justify-self: left;
+  align-self: left;
+  text-align: left;
+  margin-left: 2rem;
+  border-radius: 10px;
+  transition: transform 0.5s;
+  background-color:#2f3035;
+  font-family: "Helvetica";
+
+  display: inline-block;
+  border: 1px solid #eee;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(238, 238, 238);
+  border-bottom: 4px solid #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.blogs .title{
+  font-size: 24px;
+  font-weight: bold; /* or font-weight: 700; */
+}
+
+.read-more {
+  align-self: center;
   text-align: center;
+  padding: 1rem;
+  background: linear-gradient(to right, #282a36, #bd93f9);
+  border-radius: 10px;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  display: inline-block;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s; /* Add transition for background color */
+}
+
+.read-more:hover {
+  background: linear-gradient(to right, #282a36, #d9c2fa); /* Adjust the brighter color on the right */
+}
+
+.read-more a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.read-more a:hover {
+  color: #d9c2fa;
 }
