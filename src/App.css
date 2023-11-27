@@ -159,7 +159,6 @@ body {
 
 
 /* images section starts */
-
 .images {
   margin-top: var(--medium-margin);
   display: grid;
@@ -234,4 +233,47 @@ body {
 
 .read-more a:hover {
   color: #d9c2fa;
+}
+
+.image-article {
+  /* width: 70%; */
+  /* height: 250px; */
+  text-align: center;
+  justify-self: center;
+  /* border-radius: 10px; */
+  transition: transform 0.5s;
+  display: block; /* Remove default inline spacing */
+
+  /* max-width: 600px; Adjust the maximum width of the image container */
+  margin: 0 auto; /* Center the image container */
+  overflow: hidden; /* Hide overflowing content */
+  border-radius: 8px; /* Add some border radius for a rounded look */
+}
+
+.article-title {
+  justify-self: center;
+  align-self: center;
+  text-align: left;
+  width: 50%;
+  font-size: 34px;
+  font-style: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  /* margin: 0 auto; Center the image containe */
+}
+
+.article-body {
+  justify-self: center;
+  align-self: center;
+  text-align: left;
+  width: 50%;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 5%;
+}
+
+.article-bg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #282c34;
+  min-height: 100vh; /* Use min-height instead of height */
 }
