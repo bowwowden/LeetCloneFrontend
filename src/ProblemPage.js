@@ -60,7 +60,7 @@ const ProblemPage = () => {
     };
 
     fetchProblem();
-  }, [id]);
+  }, [id, url]);
 
   const onChange = (val) => {
     setCode(val);

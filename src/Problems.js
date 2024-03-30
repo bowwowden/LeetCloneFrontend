@@ -33,7 +33,7 @@ const Problems = () => {
     };
 
     fetchData();
-  }, []); // Empty dependency array ensures the effect runs only once when the component mounts
+  }, [url]); // Empty dependency array ensures the effect runs only once when the component mounts
 
   // Filter problems based on the search term for id, title, and category
   const filteredProblems = problems.filter(problem =>
