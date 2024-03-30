@@ -1,27 +1,37 @@
-name: "Build react site"
+name: Build and Deploy React Site
 
 on:
-  workflow_dispatch:
-    branches: [main]
+  push:
+    branches:
+      - main
 
-# Comment
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clone repository
+      - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Use Node.js 10.2
-        uses: actions/setup-node@v1
+      - name: Install Node.js and npm
+        uses: actions/setup-node@v2
         with:
           node-version: 10.2
 
-      - name: Generate build
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build React site
         run: npm run build
 
-      - name: Share artifact inside workflow
-        uses: actions/upload-artifact@v1
+      - name: Deploy to Virtual Machine
+        uses: appleboy/ssh-action@master
         with:
-          name: react-github-actions-build
-          path: build
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /path/to/your/react/site
+            rm -rf *
+            scp -r /path/to/your/react/site/build/* .  # Copy built files to VM
