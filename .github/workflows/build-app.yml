@@ -13,16 +13,16 @@ jobs:
 	- name: Use Node.js 10.2
 		uses: actions/setup-node@v1
 		with:
-		node-version: 10.2
+			node-version: 10.2
 
 	- name: Generate build
 		run: npm run build
-		
+
 		# Share artifact inside workflow
 	- name: Share artifact inside workflow
 		uses: actions/upload-artifact@v1
 		with:
-		name: react-github-actions-build
+			name: react-github-actions-build
 			path: build
 				path: build
 
