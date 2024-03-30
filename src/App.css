@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
 .App-logo {
@@ -15,7 +16,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 110vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -179,7 +180,7 @@ body {
 
 .blogs {
   width: 300px;
-  height: 500px;
+  /* height: 500px; */
   justify-self: left;
   align-self: left;
   text-align: left;
@@ -211,7 +212,9 @@ body {
   background: linear-gradient(to right, #282a36, #bd93f9);
   border-radius: 10px;
   width: 50%;
-  margin: auto;
+  /* margin: auto; */
+  margin-bottom: 8px;
+  margin-left: 8px;
   text-align: center;
   white-space: nowrap;
   vertical-align: middle;
@@ -236,15 +239,11 @@ body {
 }
 
 .image-article {
-  /* width: 70%; */
-  /* height: 250px; */
   text-align: center;
   justify-self: center;
-  /* border-radius: 10px; */
   transition: transform 0.5s;
   display: block; /* Remove default inline spacing */
 
-  /* max-width: 600px; Adjust the maximum width of the image container */
   margin: 0 auto; /* Center the image container */
   overflow: hidden; /* Hide overflowing content */
   border-radius: 8px; /* Add some border radius for a rounded look */
@@ -276,4 +275,93 @@ body {
   align-items: center;
   background-color: #282c34;
   min-height: 100vh; /* Use min-height instead of height */
+}
+
+
+.article-containers {
+  gap: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  padding: 20px 0 56px;
+  background-color: #282c34;
+  min-height: 100vh; 
+  display: flex;
+  align-items: flex-start;
+}
+
+.blog-layout {
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  width: 100%;
+}
+
+.article-section-header {
+  font-size: 24px;
+  font-weight: bold; 
+  margin-top: 5%; 
+  margin-bottom: 20px;
+  /* display: inline-block; */
+
+  /* font-weight: 500;
+  font-size: 24px;
+  line-height: 140%;
+  color: #ffffff;
+  margin-bottom: 12px; */
+}
+
+.leftContainer {
+  max-width: 336px;
+  padding-left: 32px;
+  padding-top: 32px;
+  position: sticky;
+  margin-top: 3%; 
+  top: 0;
+}
+
+.rightContainer {
+  padding: 20px;
+  justify-content: center;
+  align-items: center;
+  max-width: 1068px;
+  width: 100%;
+  padding: 32px 49px 48px 24px;
+}
+
+
+
+.container {
+  padding: 20px;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+/* .buttons-view {
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+} */
+
+button.active {
+  background-color: #2980b9;
+  padding: 10px;
+}
+
+.result-container {
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: #282a36;
+  min-height: 400px;
+}
+
+pre {
+  white-space: pre-wrap;
 }

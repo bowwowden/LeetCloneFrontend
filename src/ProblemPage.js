@@ -10,11 +10,29 @@ const ProblemPage = () => {
   const { id } = useParams();
   const [problem, setProblem] = useState(null);
   const [code, setCode] = useState("");
+  const [testcases, setTestCases] = useState("");
   const [apiResponse, setApiResponse] = useState(null);
   const [buttonClicked, setButtonClicked] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Python");
   const [selectedExtension, setSelectedExtension] = useState(langs.python());
   const url = `${config.apiUrl}`;
+  const [view, setView] = useState('output'); // Default view is 'output'
+  const [selectedInputIndex, setSelectedInputIndex] = useState(0); // Default selected input index
+  const [newTestCase, setNewTestCase] = useState({ input: [], output: [] });
+
+  // Function to add a new test case to the list
+  const addNewTestCase = () => {
+    setTestCases([...testcases, newTestCase]);
+    setNewTestCase({ input: [], output: [] }); // Clear the input fields after adding a test case
+  };
+
+  const handleViewChange = (newView) => {
+    setView(newView);
+  };
+
+  const handleInputButtonClick = (index) => {
+    setSelectedInputIndex(index);
+  };
 
   // Callback function to update the selected value
   const handleDropdownChange = (value) => {
@@ -35,8 +53,7 @@ const ProblemPage = () => {
         setProblem(data);
         // Clean up and set the default code from the problem details
         setCode(data && data.code ? data.code.replace(/\\n/g, '\n').replace(/\\t/g, '\t') : "");
-        console.log("default code ");
-        console.log(data.code);
+        setTestCases(data.input_arrays || []);
       } catch (error) {
         console.error('Error fetching problem:', error);
       }
@@ -59,7 +76,8 @@ const ProblemPage = () => {
 
     const postData = {
       code: code,
-      language: selectedValue
+      language: selectedValue,
+      input: JSON.stringify(testcases[selectedInputIndex]?.input)
       // Add other data as needed
     };
   
@@ -143,17 +161,82 @@ const ProblemPage = () => {
               </div>
               <DropdownMenu onDropdownChange={handleDropdownChange}/>
               
-              
-              {/* Display results below everything */}
-              {apiResponse && (
-                <div className="result-container">
-                  <h2>API Response:</h2>
-                  <pre>{JSON.stringify(apiResponse, null, 2)}</pre>
+              <div className="container">
+                  <div className="buttons-container">
+                    <button
+                      onClick={() => handleViewChange('output')}
+                      className={view === 'output' ? 'active' : ''}
+                    >
+                      Output
+                    </button>
+                    <button
+                      onClick={() => handleViewChange('test-cases')}
+                      className={view === 'test-cases' ? 'active' : ''}
+                    >
+                      Test Cases
+                    </button>
+                  </div>
+                  <div className="result-container">
+                   
+
+                    {view === 'test-cases' && (
+                      <div className="input-buttons">
+                        {testcases.map((_, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleInputButtonClick(index)}
+                            className={selectedInputIndex === index ? 'active' : ''}
+                          >
+                            Case {index + 1}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                    
+                    
+                    {/* Input field for the new test case */}
+                    {view === 'test-cases' && (
+                        <div>
+                          <label>New Test Case:</label>
+                          <input
+                            type="text"
+                            placeholder="Input (e.g., [1, 2, 3])"
+                            value={newTestCase.input.join(', ')}
+                            onChange={(e) => setNewTestCase({ ...newTestCase, input: e.target.value.split(',').map(Number) })}
+                          />
+                          <input
+                            type="text"
+                            placeholder="Output (e.g., [1, 2, 3])"
+                            value={newTestCase.output.join(', ')}
+                            onChange={(e) => setNewTestCase({ ...newTestCase, output: e.target.value.split(',').map(Number) })}
+                          />
+                          <button onClick={addNewTestCase}>Add Test Case</button>
+                        </div>
+                      )}
+
+
+                    <pre>
+                      {view === 'output'
+                        ? (
+                          <div>
+                            Output: {apiResponse
+                              ? apiResponse.output.replace(/\s/g, '') === JSON.stringify(testcases[selectedInputIndex]?.output).replace(/\s/g, '')
+                                  ? `✅ ${apiResponse.output.trim()}  ` 
+                                  : `❌ ${apiResponse.output.trim()}  `
+                              : ""}
+                          </div>
+                        ) : (
+                          <div>
+                            <div>Input: {JSON.stringify(testcases[selectedInputIndex]?.input)}</div>
+                            <div>Expected: {JSON.stringify(testcases[selectedInputIndex]?.output)}</div>
+                          </div>
+                        )}
+                    </pre>
+                                    
+
+                  </div>
                 </div>
-              )}
-                
-       </div>
- 
+            </div>
       </header>
 
     </div>
