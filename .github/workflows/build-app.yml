@@ -7,9 +7,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-      - name: Clone repository
-        uses: actions/checkout@v2
-
+    
       - name: Use Node.js 10.2
         uses: actions/setup-node@v1
         with:
