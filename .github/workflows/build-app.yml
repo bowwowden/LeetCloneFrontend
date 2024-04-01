@@ -34,4 +34,5 @@ jobs:
           script: |
             cd /home/linuxuser/react-site
             rm -rf *
-            scp -r /home/linuxuser/react-site/build/* . # Copy built files to VM
+            scp -r build/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/home/linuxuser/react-site # Copy built files to VM
+
