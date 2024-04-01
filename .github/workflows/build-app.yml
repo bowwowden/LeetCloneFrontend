@@ -32,8 +32,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            pwd
-            ls
-            cd /home/linuxusers/react-site
+            cd /home/linuxuser/react-site
             rm -rf *
-            scp -r . /home/linuxusers/react-site/build/* # Copy built files to VM
+            scp -r /home/linuxuser/react-site/build/* . # Copy built files to VM
