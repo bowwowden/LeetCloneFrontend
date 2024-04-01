@@ -34,5 +34,5 @@ jobs:
           script: |
             cd /home/linuxuser/react-site
             rm -rf *
-            scp -r build/* ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/home/linuxuser/react-site # Copy built files to VM
-
+            echo "test file" > file.txt
+            scp -r $GITHUB_WORKSPACE/build/* . # Copy built files from GitHub Actions runner to the VM
