@@ -42,6 +42,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/linuxuser/app-deploy/build
-            rm -rf *
-            cp /home/linuxuser/react-site/build/* /home/linuxuser/app-deploy/build/*
+            rm -rf /home/linuxuser/app-deploy/build/*
+            cp -r /home/linuxuser/react-site/build/* /home/linuxuser/app-deploy/build/
+
+
