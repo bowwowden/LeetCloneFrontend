@@ -1,11 +1,10 @@
 import './App.css';
 import CodeMirror from '@uiw/react-codemirror';
 import { dracula } from '@uiw/codemirror-theme-dracula';
-// import { javascript } from '@codemirror/lang-javascript';
 import { langs } from '@uiw/codemirror-extensions-langs';
 import { useEffect, useState, useCallback } from "react";
 import DropdownMenu from "./DropdownMenu";
-
+import config from "./config"; // Import config.js
 
 function Home() {
 
@@ -42,7 +41,7 @@ function Home() {
     };
   
   
-    const url = 'http://172.22.0.3:80/submit/'; // Replace with the actual URL
+    const url = `${config.apiUrl}/submit/`; // Replace with the actual URL
   
     fetch(url, requestOptions)
       .then(response => {

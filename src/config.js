@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    apiUrl: "http://172.20.0.3:80",
+    apiUrl: "155.138.214.97:80",
 };
   
 export default config;
