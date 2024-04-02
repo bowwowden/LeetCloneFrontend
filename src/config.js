@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    apiUrl: "https://155.138.214.97:5005",
+    apiUrl: "https://yinyang.codes",
 };
   
 export default config;
