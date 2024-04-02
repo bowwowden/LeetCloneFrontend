@@ -1,6 +1,6 @@
 // config.js
 const config = {
-    apiUrl: "http://localhost:5005",
+    apiUrl: "https://localhost:5005",
 };
   
 export default config;
