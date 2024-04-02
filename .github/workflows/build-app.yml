@@ -34,16 +34,14 @@ jobs:
           source: "build"
           target: "/home/linuxuser/react-site"
 
-
-      # - name: Deploy to Virtual Machine
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ secrets.SSH_HOST }}
-      #     username: ${{ secrets.SSH_USERNAME }}
-      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     script: |
-      #       cd /home/linuxuser/react-site
-      #       rm -rf *
-      #       echo "test file" > file.txt
-      #       scp -r $GITHUB_WORKSPACE/build/* . # Copy built files from GitHub Actions runner to the VM
+      - name: Deploy to Virtual Machine
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /home/linuxuser/app-deploy/build
+            rm -rf *
+            cp /home/linuxuser/react-site/build/* /home/linuxuser/app-deploy/build/*
