@@ -23,16 +23,28 @@ jobs:
 
       - name: Build React site
         run: npm run build
-
-      - name: Deploy to Virtual Machine
-        uses: appleboy/ssh-action@master
+      
+      - name: Copy build to VM
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/linuxuser/react-site
-            rm -rf *
-            echo "test file" > file.txt
-            scp -r $GITHUB_WORKSPACE/build/* . # Copy built files from GitHub Actions runner to the VM
+            ls
+            pwd
+            scp -r build ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/home/linuxuser/react-site
+
+
+      # - name: Deploy to Virtual Machine
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }}
+      #     username: ${{ secrets.SSH_USERNAME }}
+      #     key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #     port: ${{ secrets.SSH_PORT }}
+      #     script: |
+      #       cd /home/linuxuser/react-site
+      #       rm -rf *
+      #       echo "test file" > file.txt
+      #       scp -r $GITHUB_WORKSPACE/build/* . # Copy built files from GitHub Actions runner to the VM
