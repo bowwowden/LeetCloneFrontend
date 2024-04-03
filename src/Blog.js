@@ -10,12 +10,12 @@ const Blog = () => {
   return (
     <div className="blog-layout">
 
-
+{/* 
       <div className="leftContainer"> 
         <h1 className="article-section-header"> By Topic </h1>
         <p> Sorting </p>
         <p> Trees </p>
-      </div>
+      </div> */}
 
       <div className="rightContainer" >
       <h1 className="article-section-header"> Algorithms </h1>
@@ -67,8 +67,6 @@ const Blog = () => {
      
      
 
-
-      {/* </div> */}
     </div>
   );
 };
